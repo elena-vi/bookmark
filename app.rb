@@ -2,11 +2,14 @@
 ENV["RACK_ENV"] ||= "development"
 
 require 'sinatra/base'
+require 'sinatra/flash'
 require_relative 'data_mapper_setup'
 
 
 class BookMarkM < Sinatra::Base
 
+  register Sinatra::Flash
+  
   enable :sessions
   set :session_secret, 'super secret'
 
@@ -39,17 +42,18 @@ class BookMarkM < Sinatra::Base
   end
 
   get '/user/new' do
+     @user_email ||= ""
     erb :'user/new'
   end
 
   post '/user/new' do
-
     user = User.new(email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
     if user.save
       session[:user_id] = user.id
       redirect to('/links')
     else
-      @errror = true
+      flash.now[:notice] = "Password and confirmation password do not match"
+      @user_email = user.email
       erb :'user/new'
     end
   end

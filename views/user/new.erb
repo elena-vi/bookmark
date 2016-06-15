@@ -1,9 +1,6 @@
 <form method="POST" action="/user/new">
-	<input type='text' name='email' placeholder="Enter Email">
+	<input type='text' name='email' placeholder="Enter Email" value='<%= @user_email %>'>
 	<input type='password' name='password' placeholder="Enter Password">
 	<input type='password' name='password_confirmation' placeholder="Re-enter Password">
 	<input type='submit' value='Sign up'>
 </form>
-<% if @errror %>
-	<em>Password and confirmation password do not match</em>
-<% end %>
