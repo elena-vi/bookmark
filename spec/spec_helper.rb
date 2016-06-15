@@ -1,9 +1,9 @@
 ENV["RACK_ENV"] = "test"
-require './app/models/link'
+require './models/link'
 
 
 
-require File.join(File.dirname(__FILE__), '..', './app/app.rb')
+require File.join(File.dirname(__FILE__), '..', './app.rb')
 
 
 require 'capybara'
