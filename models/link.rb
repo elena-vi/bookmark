@@ -1,7 +1,7 @@
 require 'dm-migrations'
 require 'data_mapper'
 require 'dm-postgres-adapter'
-require_relative 'tag'
+# require_relative 'tag'
 class Link
   include DataMapper::Resource
   has(n, :tags, through: Resource)
