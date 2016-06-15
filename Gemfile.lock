@@ -121,9 +121,3 @@ DEPENDENCIES
   rspec
   rspec-sinatra
   sinatra
-
-RUBY VERSION
-   ruby 2.1.5p273
-
-BUNDLED WITH
-   1.12.5

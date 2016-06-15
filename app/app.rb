@@ -3,12 +3,11 @@ ENV["RACK_ENV"] ||= "development"
 require 'sinatra/base'
 require './app/models/link'
 class BookmarkManager < Sinatra::Base
-  enable :sessions
+  # enable :sessions
   get '/' do
     'Hello BookmarkManager!'
   end
   get '/links' do
-    # Link.create(url: params[:url], title: params[:title])
     @links = Link.all
     erb :links
   end
