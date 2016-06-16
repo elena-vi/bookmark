@@ -9,7 +9,7 @@ class User
 	include DataMapper::Resource
 
 	property :id, Serial
-	property :email, String
+	property :email, String, required: true
 	property :password_digest, String, length: 60
 	validates_confirmation_of :password
 	def password=(password)
