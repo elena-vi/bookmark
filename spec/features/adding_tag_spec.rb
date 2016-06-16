@@ -25,7 +25,7 @@ feature 'Adding multiple tags' do
 
     click_button 'Add New Link'
     link = Link.first
-    expect(link.tags.map(&:name)).to include('education ruby')
+    expect(link.tags.map(&:name)).to include('education', 'ruby')
   end
 
 end
