@@ -9,10 +9,12 @@ class BookmarkManager < Sinatra::Base
   get '/' do
     'Hello BookmarkManager!'
   end
+  
   get '/links' do
     @links = Link.all
     erb :links
   end
+
   get '/links/new' do
     erb :'links/new'
   end
