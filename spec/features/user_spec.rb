@@ -1,7 +1,8 @@
-def sign_up
+def sign_up(email: 'email@mail.com', password: 'super secret', password_confirmation: 'super secret' )
 	visit '/user/new'
-	fill_in 'email', with: 'email@mail.com'
-	fill_in 'password', with: 'super secret'
+	fill_in 'email', with: email
+	fill_in 'password', with: password
+	fill_in 'password_confirmation', with: password_confirmation
 	click_button 'Sign up'
 end
 
@@ -13,5 +14,10 @@ feature 'user sign up' do
 
 		expect(page).to have_content 'Welcome email@mail.com'
 	end
+
+	scenario 'Passwords dont match' do
+		expect { sign_up(password_confirmation: 'wrong') }.not_to change(User, :count)
+	end
+
 
 end
