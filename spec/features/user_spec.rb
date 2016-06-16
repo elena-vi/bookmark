@@ -18,16 +18,21 @@ feature 'user sign up' do
 	scenario 'Passwords dont match' do
 		expect { sign_up(password_confirmation: 'wrong') }.not_to change(User, :count)
 		expect(current_path).to eq("/user")
-		expect(page).to have_content "Password and confirmation password do not match"
+		expect(page).to have_content "Password does not match the confirmation"
 	end
 
 	scenario "nil email address" do
-    expect { sign_up(email: nil) }.not_to change(User, :count)
-  end
+		expect { sign_up(email: nil) }.not_to change(User, :count)
+	end
 
 	scenario "invalid address" do
 		expect { sign_up(email: "elena") }.not_to change(User, :count)
 	end
 
-	
+	scenario "taken address" do
+		sign_up
+		expect { sign_up }.not_to change(User, :count)
+		expect(page).to have_content "Email is already taken"
+	end
+
 end

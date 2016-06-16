@@ -127,9 +127,3 @@ DEPENDENCIES
   rspec-sinatra
   sinatra
   sinatra-flash
-
-RUBY VERSION
-   ruby 2.1.5p273
-
-BUNDLED WITH
-   1.12.5
