@@ -12,7 +12,8 @@ class User
 	property :email, String, required: true
 	property :password_digest, String, length: 60
 	validates_confirmation_of :password
-		validates_format_of :email, :as => :email_address
+	validates_format_of :email, :as => :email_address
+	validates_presence_of :email
 	def password=(password)
 		@password = password
 		self.password_digest = BCrypt::Password.create(password)
