@@ -2,8 +2,6 @@ def sign_up
 	visit '/user/new'
 	fill_in 'email', with: 'email@mail.com'
 	fill_in 'password', with: 'super secret'
-
-
 	click_button 'Sign up'
 end
 
