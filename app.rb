@@ -13,7 +13,7 @@ class BookmarkManager < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
-    'Hello BookmarkManager!'
+    ''
   end
 
   get '/links' do
@@ -56,13 +56,13 @@ class BookmarkManager < Sinatra::Base
 
   end
 
-  get '/user/login' do 
+  get '/user/login' do
     erb :'user/login'
-  end 
+  end
 
-  post '/user/login' do 
+  post '/user/login' do
     user = User.authenticate(params[:email], params[:password])
-    if user 
+    if user
       session[:user_id] = user.id
       redirect ('/links')
     else
@@ -71,6 +71,13 @@ class BookmarkManager < Sinatra::Base
     end
   end
 
+  get '/user/logout' do
+    @last_user = current_user
+    @current_user = nil
+    session[:user_id] = nil
+    erb :'user/logout'
+  end
+  
   helpers do
     def current_user
       @current_user ||= User.get(session[:user_id])

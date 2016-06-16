@@ -3,20 +3,21 @@
   <head>
     <title>Bookmark Manager</title>
   </head>
-
   <body>
     <% if flash[:errors] && !flash[:errors].empty? %>
-      <ul id="error">
-        <% flash[:errors].each do |error| %>
-        <li>
-          <%= error %>
-        </li>
-        <% end %>
-      </ul>
+    <ul id="error">
+      <% flash[:errors].each do |error| %>
+      <li>
+        <%= error %>
+      </li>
+      <% end %>
+    </ul>
     <% end %>
     <% if current_user %>
-      Welcome <%= current_user.email %>
+      Welcome <%= current_user.email %> <br>
+      <a href="/user/logout">Sign out</a>
     <% end %>
     <%= yield %>
   </body>
 </html>
+
