@@ -6,6 +6,13 @@ def sign_up(email: 'email@mail.com', password: 'super secret', password_confirma
 	click_button 'Sign up'
 end
 
+def sign_in(email: 'email@mail.com', password: 'super secret')
+	visit '/user/login'
+	fill_in 'email', with: email
+	fill_in 'password', with: password
+	click_button 'Sign in'
+end
+
 feature 'user sign up' do
 
 	scenario 'Incriment users by 1' do
@@ -35,4 +42,21 @@ feature 'user sign up' do
 		expect(page).to have_content "Email is already taken"
 	end
 
+end
+
+feature 'Sign in' do
+
+	before(:each) do
+		sign_up
+	end
+
+	scenario 'can sign in' do
+		sign_in
+		expect(page).to have_content 'Welcome email@mail.com'
+	end
+
+	scenario 'can sign in' do
+		sign_in(password: 'wrong')
+		expect(page).to have_content "The email or password is incorrect"
+	end
 end
